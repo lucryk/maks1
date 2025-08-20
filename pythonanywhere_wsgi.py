@@ -1,12 +1,12 @@
 import os
 import sys
 
-# Добавляем путь к проекту в системный путь
-path = '/home/yourusername/yourprojectname'  # ЗАМЕНИТЕ yourusername и yourprojectname
+# Путь к вашему проекту на PythonAnywhere
+path = '/home/maksimkuz/maks1'
 if path not in sys.path:
     sys.path.append(path)
 
-# Указываем настройки Django
+# Указываем Django, где находятся настройки
 os.environ['DJANGO_SETTINGS_MODULE'] = 'myproject.settings'
 
 # Запускаем приложение

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+import urllib.parse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,17 +76,24 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 if os.environ.get('DATABASE_URL'):
+    # Парсим DATABASE_URL вручную для избежания проблем с кодировкой
+    db_url = os.environ.get('DATABASE_URL')
+
+    # Декодируем URL и извлекаем компоненты
+    result = urllib.parse.urlparse(db_url)
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('PGDATABASE'),
-            'USER': os.environ.get('PGUSER'),
-            'PASSWORD': os.environ.get('PGPASSWORD'),
-            'HOST': os.environ.get('PGHOST'),
-            'PORT': os.environ.get('PGPORT', 5432),
+            'NAME': result.path[1:],  # Убираем первый слэш
+            'USER': result.username,
+            'PASSWORD': result.password,
+            'HOST': result.hostname,
+            'PORT': result.port,
         }
     }
 else:
+    # Настройки для SQLite (локальная разработка)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

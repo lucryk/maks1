@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-ju2mt2*+t+6+6mnrho5=+rf$r4#zm1h_73*98zfff=eyju#(u#')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'ju2mt2*+t+6+6mnrho5=+rf$r4#zm1h_73*98zfff=eyju#(u#')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -126,3 +126,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+# Настройки CSRF
+CSRF_TRUSTED_ORIGINS = [
+    'https://maksimkuznetsov.pythonanywhere.com',
+    'http://maksimkuznetsov.pythonanywhere.com',
+]
+
+# Настройки безопасности для production
+SECURE_SSL_REDIRECT = False  # PythonAnywhere обрабатывает SSL самостоятельно
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True

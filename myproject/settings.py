@@ -25,8 +25,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'ju2mt2*+t+6+6mnrho5=+rf$r4#zm1h_73*98
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['maksimkuznetsov.pythonanywhere.com', 'localhost', '127.0.0.1', '.pythonanywhere.com']
-
+ALLOWED_HOSTS = [
+    'maksimkuznetsov.pythonanywhere.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 # Application definition
 
